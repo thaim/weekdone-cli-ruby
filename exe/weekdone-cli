@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require "weekdone/cli"
+
+Weekdone::Cli::Command.start
