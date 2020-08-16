@@ -16,14 +16,14 @@ module Weekdone::Cli
     end
 
 
-    map 'get-comment' => 'getComment'
-    desc "getComment", "get item comments"
-    option :userid, type: :string, required: true
-    def getComment
+    map 'get-comments' => 'getComments'
+    desc "get-comments", "get item comments"
+    option :itemid, type: :string, required: true
+    def getComments
       client = Weekdone::Api.new(nil, nil)
       client.token_code = Credential.read_credential
 
-      comments = client.getItemComments(user_id: options[:userid])
+      comments = client.getItemComments(item_id: options[:itemid])
       print JSON.dump(comments)
     end
   end
