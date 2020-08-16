@@ -1,6 +1,8 @@
 require 'thor'
 require 'weekdone'
 
+require_relative 'command_item'
+
 module Weekdone::Cli
   class Command < Thor
     def self.exit_on_failure?
@@ -25,18 +27,6 @@ module Weekdone::Cli
       end
     end
 
-
-    desc "searchForItems", "search for items"
-    method_options userid: :string
-    def searchForItems
-      client = Weekdone::Api.new(nil, nil)
-      File.open(ENV['HOME'] + "/.weekdone/credentials", "r") do |f|
-        @token_code = f.gets(client.token_code)
-      end
-      client.token_code = @token_code
-
-      items = client.searchForItems(user_id: options[:userid])
-      print JSON.dump(items)
-    end
+    register(Item, 'item', 'item [COMMAND]', 'command for item')
   end
 end
