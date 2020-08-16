@@ -3,6 +3,10 @@ require 'weekdone'
 
 module Weekdone::Cli
   class Command < Thor
+    def self.exit_on_failure?
+      true
+    end
+
     desc "login", "oauth login to weekdone"
     def login
       client_id = ENV['WEEKDONE_CLIENT_ID']
