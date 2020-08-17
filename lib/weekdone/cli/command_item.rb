@@ -2,6 +2,7 @@ require 'thor'
 require 'weekdone'
 
 require_relative 'credential'
+require_relative 'output'
 
 module Weekdone::Cli
   class Item < Thor
@@ -12,7 +13,7 @@ module Weekdone::Cli
       client.token_code = Credential.read_credential
 
       items = client.searchForItems(user_id: options[:userid])
-      print JSON.dump(items)
+      Output.format(items, format: :json)
     end
 
 
@@ -23,8 +24,8 @@ module Weekdone::Cli
       client = Weekdone::Api.new(nil, nil)
       client.token_code = Credential.read_credential
 
-      comments = client.getItemComments(item_id: options[:itemid])
-      print JSON.dump(comments)
+      comments = client.getItemComments(options[:itemid])
+      Output.format(comments, :json)
     end
   end
 end
