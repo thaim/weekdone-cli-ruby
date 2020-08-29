@@ -22,9 +22,7 @@ module Weekdone::Cli
       auth_code = STDIN.gets.chomp
       client.authorization_grant(auth_code)
 
-      File.open(ENV['HOME'] + "/.weekdone/credentials", "w") do |f|
-        f.puts(client.token_code)
-      end
+      Credential.write_credential(client.token_hash)
     end
 
     register(Item, 'item', 'item [COMMAND]', 'command for item')
