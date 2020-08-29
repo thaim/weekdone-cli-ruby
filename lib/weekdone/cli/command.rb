@@ -2,6 +2,7 @@ require 'thor'
 require 'weekdone'
 
 require_relative 'command_item'
+require_relative 'command_objective'
 
 module Weekdone::Cli
   class Command < Thor
@@ -26,5 +27,6 @@ module Weekdone::Cli
     end
 
     register(Item, 'item', 'item [COMMAND]', 'command for item')
+    register(Objective, 'objective', 'objective [COMMAND]', 'command for objective')
   end
 end
