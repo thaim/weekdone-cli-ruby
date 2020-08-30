@@ -4,7 +4,7 @@ module Weekdone::Cli
   class Output
     class << self
       def format(data, format: :json, loglevel: Logger::DEBUG)
-        @@logger = Logger.new(STDOUT)
+        @@logger = Logger.new(STDERR)
         @@logger.level = loglevel
 
         if format == :json
