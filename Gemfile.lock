@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    weekdone-cli (0.1.1)
+    weekdone-cli (0.1.2)
       thor (~> 1.0)
       weekdone-sdk (~> 0.3)
 
