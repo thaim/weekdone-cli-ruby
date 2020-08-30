@@ -20,6 +20,15 @@ module Weekdone::Cli
       Output.format(items, format: :json)
     end
 
+    desc "likes", "get item likes"
+    option :itemid, type: :numeric, required: true
+    def likes
+      client = build_client
+
+      likes = client.getItemLikes(options[:itemid])
+      Credential.write_credential(client.token_hash)
+      Output.format(likes, format: :json)
+    end
 
     map 'get-comments' => 'getComments'
     desc "get-comments", "get item comments"
