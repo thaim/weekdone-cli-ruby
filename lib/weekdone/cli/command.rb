@@ -2,6 +2,7 @@ require 'thor'
 require 'weekdone'
 
 require_relative 'command_item'
+require_relative 'command_tag'
 require_relative 'command_objective'
 require_relative 'command_company'
 
@@ -26,6 +27,7 @@ module Weekdone::Cli
     end
 
     register(Item, 'item', 'item [COMMAND]', 'command for item')
+    register(Tag, 'tag', 'tag [COMMAND]', 'command for tag')
     register(Objective, 'objective', 'objective [COMMAND]', 'command for objective')
     register(Company, 'company', 'company [COMMAND]', 'command for company')
   end
