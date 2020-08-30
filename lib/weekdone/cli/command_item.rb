@@ -11,7 +11,7 @@ module Weekdone::Cli
     include Weekdone::Cli
 
     desc "search", "search for items"
-    method_options userid: :string
+    option :userid, type: :numeric, required: true
     def search
       client = build_client
 
@@ -32,7 +32,7 @@ module Weekdone::Cli
 
     map 'get-comments' => 'getComments'
     desc "get-comments", "get item comments"
-    option :itemid, type: :string, required: true
+    option :itemid, type: :numeric, required: true
     def getComments
       client = build_client
 
