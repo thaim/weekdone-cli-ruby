@@ -12,10 +12,8 @@ module Weekdone::Cli
 
     desc "login", "oauth login to weekdone"
     def login
-      client_id = ENV['WEEKDONE_CLIENT_ID']
-      client_secret = ENV['WEEKDONE_CLIENT_SECRET']
+      client = build
 
-      client = Weekdone::Api.new(client_id, client_secret)
       puts "open URL to authorize:"
       puts client.authorization_request
 

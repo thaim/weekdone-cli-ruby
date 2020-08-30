@@ -2,12 +2,14 @@ require 'thor'
 require 'weekdone'
 require 'logger'
 
+require_relative 'base'
 require_relative 'credential'
 require_relative 'output'
 
 
 module Weekdone::Cli
   class Objective < Thor
+    include Weekdone::Cli
 
     desc "list", "get all objectives"
     option :type, type: :string
@@ -16,8 +18,7 @@ module Weekdone::Cli
     option :userid, type: :numeric
     option :period, type: :string
     def list
-      client = Weekdone::Api.new(nil, nil)
-      client.token_hash = Credential.read_credential
+      client = build_client
 
       params = {}
       params[:type] = options[:type] if not options[:type].nil?
@@ -34,8 +35,7 @@ module Weekdone::Cli
 
     desc "comments", "list objective comments"
     def comments
-      client = Weekdone::Api.new
-      client.token_hash = Credential.read_credential
+      client = build_client
 
       params = {}
       params[:type] = options[:type] if not options[:type].nil?
