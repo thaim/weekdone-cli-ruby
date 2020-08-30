@@ -9,7 +9,7 @@ module Weekdone::Cli
 
         if format == :json
           @@logger.debug("print in json format")
-          print data
+          print data.to_json
         elsif format == :text
           @@logger.debug("print in text format")
           formatText(data)
