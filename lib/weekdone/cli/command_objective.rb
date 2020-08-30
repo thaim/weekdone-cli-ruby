@@ -34,17 +34,11 @@ module Weekdone::Cli
     end
 
     desc "comments", "list objective comments"
+    option :objectiveid, type: :numeric, required: true
     def comments
       client = build_client
 
-      params = {}
-      params[:type] = options[:type] if not options[:type].nil?
-      params[:departmentid] = options[:departmentid] if not options[:departmentid].nil?
-      params[:teamid] = options[:teamid] if not options[:teamid].nil?
-      params[:userid] = options[:userid] if not options[:userid].nil?
-      params[:period] = options[:period] if not options[:period].nil?
-
-      objectives = client.getAllObjectives(params)
+      objectives = client.listObjectiveComments(options[:objectiveid])
       Credential.write_credential(client.token_hash)
       Output.format(objectives, format: :json)
     end
